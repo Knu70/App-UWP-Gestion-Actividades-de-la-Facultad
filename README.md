@@ -1,5 +1,5 @@
 # App UWP Gestión Actividades de la Facultad
-## Menú Principal
+## Menú principal
 En la primera página de la aplicación encontramos el menú principal, el cuál a parte de darnos
 la bienvenida, tiene la funcionalidad de navegar entre las distintas páginas de la aplicación; ya
 sea a través de los botones con imágenes que describen la finalidad de cada página o mediante
