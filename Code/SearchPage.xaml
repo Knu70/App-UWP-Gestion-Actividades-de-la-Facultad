@@ -1,0 +1,145 @@
+﻿<Page
+    x:Class="practicaUWP.SearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:practicaUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Limpiar" Icon="Clear" Click="AppBarButton_Click_Clear"/>
+                <AppBarButton Label="Atras" Icon="Back" Click="AppBarButton_Click_Back"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <RelativePanel Padding="20">
+        <Border x:Name="bordeEtiqueta"
+                Background="DarkGoldenrod"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True">
+            <TextBlock Text="Busqueda de Alumnos"
+                       Style="{StaticResource etiquetaCabecera}"/>
+        </Border>
+        <TextBlock x:Name="etiquetaDni"
+                   RelativePanel.Below="bordeEtiqueta"
+                   RelativePanel.AlignLeftWithPanel="True"
+                   Text="DNI"
+                   FontSize="20"
+                   Margin="0,20,0,0"/>
+        <Grid x:Name="gridBusqueda"
+              RelativePanel.Below="etiquetaDni"
+              RelativePanel.AlignLeftWithPanel="True"
+              RelativePanel.AlignRightWithPanel="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0"
+                     x:Name="cajaBusqueda"
+                     PlaceholderText="Introduce DNI..."
+                     Style="{StaticResource cajaTexto}"/>
+            <Button Grid.Column="1"
+                    x:Name="botonBucar"
+                    Content="Buscar"
+                    Click="Click_Search"
+                    Background="Goldenrod"
+                    Foreground="White"
+                    Padding="10"
+                    Margin="30,0,0,0"
+                    Height="50"
+                    Width="100"/>
+        </Grid>
+        <Border x:Name="bordeDatos"
+                Background="Goldenrod"
+                RelativePanel.Below="gridBusqueda"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                BorderBrush="DarkGoldenrod"
+                BorderThickness="5"
+                Margin="0,10"/>
+        <TextBlock x:Name="etiquetaDatos"
+                   RelativePanel.Below="bordeDatos"
+                   RelativePanel.AlignLeftWithPanel="True"
+                   FontSize="22"
+                   FontWeight="Bold"
+                   Margin="0,20,0,10"/>
+        <ListView x:Name="listadoAlumnos"
+                  RelativePanel.Below="etiquetaDatos"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True"
+                  SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="DNI" FontSize="20" Margin="10,0"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Dni}" FontSize="20" Foreground="Goldenrod" Margin="10,0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Nombre" FontSize="20" Margin="10,0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Nombre}"  FontSize="20" Foreground="Goldenrod" Margin="10,0"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Apellidos" FontSize="20" Margin="10,0"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Apellidos}"  FontSize="20" Foreground="Goldenrod" Margin="10,0"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Email" FontSize="20" Margin="10,0"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Email}"  FontSize="20" Foreground="Goldenrod" Margin="10,0"/>
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Sexo(0=Hombre/1=Mujer)" FontSize="20" Margin="10,0"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Sexo}"  FontSize="20" Foreground="Goldenrod" Margin="10,0"/>
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="0=Informatica/1=ADET/2=DobleGrado" FontSize="20" Margin="10,0"/>
+                        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Titulacion}"  FontSize="20" Foreground="Goldenrod" Margin="10,0"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBlock x:Name="etiquetaActividades"
+                   RelativePanel.Below="listadoAlumnos"
+                   RelativePanel.AlignLeftWithPanel="True"
+                   FontSize="22"
+                   FontWeight="Bold"
+                   Margin="0,20,0,10"/>
+        <ListView x:Name="listadoActividades"
+                  RelativePanel.Below="etiquetaActividades"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True"
+                  SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Titulo" FontSize="20" Margin="10,0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Titulo}" Margin="10,0" FontSize="20" Foreground="Goldenrod"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Aula" FontSize="20" Margin="10,0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Aula}" Margin="10,0" FontSize="20" Foreground="Goldenrod"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="Fecha" FontSize="20" Margin="10,0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Fecha}" Margin="10,0" FontSize="20" Foreground="Goldenrod"/>
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="Hora" FontSize="20" Margin="10,0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Hora}" Margin="10,0" FontSize="20" Foreground="Goldenrod"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </RelativePanel>
+</Page>

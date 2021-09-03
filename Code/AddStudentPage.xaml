@@ -1,0 +1,141 @@
+﻿<Page
+    x:Class="practicaUWP.AddStudentPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:practicaUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Guardar" Icon="Save" Click="AppBarButton_Click_Save"/>
+                <AppBarButton Label="Limpiar" Icon="Clear" Click="AppBarButton_Click_Clear"/>
+                <AppBarButton Label="Atras" Icon="Back" Click="AppBarButton_Click_Back"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <RelativePanel Padding="20">
+        <Border x:Name="bordeEtiqueta"
+                Background="DarkGoldenrod"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True">
+            <TextBlock Text="Inscripción de Alumnos a Actividades"
+                       Style="{StaticResource etiquetaCabecera}"/>
+        </Border>
+        <TextBox x:Name="cajaDni"
+                 RelativePanel.AlignLeftWithPanel="True"
+                 RelativePanel.AlignRightWithPanel="True"
+                 RelativePanel.Below="bordeEtiqueta"
+                 Header="DNI"
+                 PlaceholderText="Introduce DNI..."
+                 Style="{StaticResource cajaTexto}"/>
+
+        <Grid x:Name="gridNombreApellidos"
+              RelativePanel.Below="cajaDni"
+              RelativePanel.AlignLeftWithPanel="True"
+              RelativePanel.AlignRightWithPanel="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="cajaNombre"
+                     Grid.Column="0"
+                     Header="Nombre"
+                     PlaceholderText="Introduce Nombre..."
+                     Style="{StaticResource cajaTexto}"/>
+            <TextBox x:Name="cajaApellidos"
+                     Grid.Column="1"
+                     Header="Apellidos"
+                     PlaceholderText="Introduce Apellidos..."
+                     Margin="20,20,0,0"
+                     Style="{StaticResource cajaTexto}"/>
+        </Grid>
+
+        <TextBox x:Name="cajaEmail"
+                 RelativePanel.Below="gridNombreApellidos"
+                 RelativePanel.AlignLeftWithPanel="True"
+                 RelativePanel.AlignRightWithPanel="True"
+                 Header="Email"
+                 PlaceholderText="Introduce Email..."
+                 Style="{StaticResource cajaTexto}"/>
+        <Grid RelativePanel.Below="cajaEmail"
+              RelativePanel.AlignLeftWithPanel="True"
+              RelativePanel.AlignRightWithPanel="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0"
+                        Orientation="Vertical">
+                <TextBlock Text="Sexo"
+                           FontSize="20"
+                           Margin="0,20,0,0"/>
+                <RadioButton x:Name="botonHombre"
+                             Content="Hombre"
+                             FontSize="20"
+                             Foreground="DarkGoldenrod"/>
+                <RadioButton x:Name="botonMujer"
+                             Content="Mujer"
+                             FontSize="20"
+                             Foreground="DarkGoldenrod"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0"
+                        Orientation="Vertical">
+                <TextBlock Text="Titulacion"
+                           FontSize="20"
+                           Margin="0,20,0,0"/>
+                <RadioButton x:Name="botonInformatica"
+                             Content="Informática"
+                             FontSize="20"
+                             Foreground="DarkGoldenrod"/>
+                <RadioButton x:Name="botonAdet"
+                             Content="ADET"
+                             FontSize="20"
+                             Foreground="DarkGoldenrod"/>
+                <RadioButton x:Name="botonDobleGrado"
+                             Content="Doble Grado"
+                             FontSize="20"
+                             Foreground="DarkGoldenrod"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1" 
+                        Grid.ColumnSpan="2"
+                        Orientation="Vertical"
+                        Margin="100,0,0,0">
+                <TextBlock x:Name="etiquetaActividad"
+                           RelativePanel.Below="bordeLista"
+                           Text="Actividad"
+                           FontSize="20"
+                           Margin="0,20,0,0"/>
+                <ListView x:Name="listadoActividades"
+                          RelativePanel.Below="etiquetaActividad"
+                          RelativePanel.AlignLeftWithPanel="True"
+                          RelativePanel.AlignRightWithPanel="True"
+                          SelectionMode="Multiple"> 
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Titulo}" 
+                                       FontSize="20"
+                                       Foreground="DarkGoldenrod"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+            </StackPanel>
+        </Grid>
+        
+        
+        
+        
+        
+
+    </RelativePanel>
+    
+</Page>
